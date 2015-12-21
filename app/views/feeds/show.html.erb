@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @feed.name %>
-</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Published at</th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Url:</strong>
-  <%= @feed.url %>
-</p>
+  <tbody>
+    <% @feed.entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.title, entry.url, target: '_blank'%></td>
+        <td><%= entry.published.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Description:</strong>
-  <%= @feed.description %>
-</p>
 
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %>
